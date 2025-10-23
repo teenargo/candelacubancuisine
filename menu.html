@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Candela Cuban Cuisine</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+        STYLES
+        ============================================================
+        */
+        :root {
+            --primary-red: #E60000;    /* Fiery red from logo */
+            --primary-yellow: #FDB813; /* Warm yellow from logo */
+            --dark-bg: #1A3066;       /* Deep blue from logo */
+            --text-light: #F5F5F5;
+            --text-dark: #333333;
+            --header-height: 70px; 
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding-top: var(--header-height); 
+            font-family: 'Lato', 'Helvetica', Arial, sans-serif;
+            background-color: var(--dark-bg); /* Dark background for this page */
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Arvo', 'Georgia', serif;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-top: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-red);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #B02020; 
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-yellow);
+            color: var(--dark-bg);
+            font-weight: bold;
+        }
+
+        .btn-secondary:hover {
+            background-color: #E0A02D;
+        }
+
+        /* ============================================================
+        HEADER & NAVIGATION (NO LOGO)
+        ============================================================
+        */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--dark-bg); /* New Blue */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem 0 1.5rem; /* Adjusted padding */
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-sizing: border-box; 
+        }
+
+        /* This is a spacer to balance the header */
+        .logo-placeholder {
+            width: 55px; /* Same as logo */
+            height: 55px;
+        }
+
+        .menu-toggle {
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+            padding: 1rem; /* Easier to tap */
+        }
+
+        .main-nav {
+            display: none; 
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            height: calc(100vh - var(--header-height));
+            background-color: var(--dark-bg); /* New Blue */
+        }
+
+        .main-nav.is-open {
+            display: block;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            padding: 2rem 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .main-nav li {
+            border-bottom: 1px solid #3A4C7A; /* Lighter blue for separator */
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 1.5rem 1rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.2s ease;
+        }
+
+        .main-nav a:hover {
+            background-color: var(--primary-red);
+        }
+
+        .main-nav .nav-button {
+            padding: 1.5rem;
+        }
+
+        .main-nav .nav-button a {
+            background-color: var(--primary-yellow);
+            color: var(--dark-bg);
+            border-radius: 5px;
+            margin: 1rem 2rem 0;
+            padding: 1rem;
+        }
+        .main-nav .nav-button a:hover {
+            background-color: #E0A02D;
+        }
+
+        /* ============================================================
+        PAGE-SPECIFIC STYLES
+        ============================================================
+        */
+
+        #menu-photo-section {
+            padding: 1rem; /* Some padding around the menu */
+            line-height: 0;
+        }
+        
+        #menu-photo-section img {
+            width: 100%;
+            max-width: 1000px; /* So it doesn't get huge on desktop */
+            margin: 0 auto;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        /* ============================================================
+        FOOTER
+        ============================================================
+        */
+        .footer {
+            background-color: var(--dark-bg); /* New Blue */
+            color: #aaa;
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border-top: 5px solid var(--primary-yellow); /* New Yellow */
+        }
+        .footer h3 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        .footer a {
+            color: var(--primary-yellow); /* New Yellow */
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer .copyright {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+
+        /* ============================================================
+        DESKTOP STYLES
+        ============================================================
+        */
+        @media (min-width: 768px) {
+            
+            .menu-toggle {
+                display: none; /* Hide hamburger */
+            }
+
+            .main-nav {
+                display: flex; /* Show nav */
+                position: static;
+                height: auto;
+                width: auto;
+                background-color: transparent;
+            }
+
+            .main-nav ul {
+                display: flex;
+                padding: 0;
+                align-items: center;
+            }
+            
+            .main-nav li {
+                border-bottom: none;
+            }
+
+            .main-nav a {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+
+            .main-nav a:hover {
+                background-color: transparent;
+                color: var(--primary-yellow);
+            }
+
+            .main-nav .nav-button {
+                padding: 0 0 0 1rem;
+            }
+            .main-nav .nav-button a {
+                margin: 0;
+                padding: 0.5rem 1rem;
+            }
+
+            #menu-photo-section {
+                padding: 3rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        
+        <div class="logo-placeholder"></div>
+        
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+        
+        <nav class="main-nav" id="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="index.html#about">Our Story</a></li>
+                <li class="nav-button"><a href="contact.html" class="btn-secondary">Book Now / Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="menu-photo-section">
+            <img src="websitemenu.png" alt="Candela Cuban Cuisine Menu">
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <h3>Contact</h3>
+        <a href="mailto:candelacubancuisine@gmail.com">candelacubancuisine@gmail.com</a>
+        <a href="tel:772-342-3740">772-342-3740</a>
+        
+        <p class="copyright">&copy; 2025 Candela Cuban Cuisine. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+            
+            menuToggle.addEventListener('click', function() {
+                const isOpen = mainNav.classList.contains('is-open');
+                
+                if (isOpen) {
+                    mainNav.classList.remove('is-open');
+                    menuToggle.innerHTML = '&#9776;'; // Hamburger icon
+                } else {
+                    mainNav.classList.add('is-open');
+                    menuToggle.innerHTML = '&times;'; // 'X' icon
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

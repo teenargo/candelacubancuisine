@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candela Cuban Cuisine - Home</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+        STYLES
+        ============================================================
+        */
+        :root {
+            --primary-red: #E60000;    /* Fiery red from logo */
+            --primary-yellow: #FDB813; /* Warm yellow from logo */
+            --dark-bg: #1A3066;       /* Deep blue from logo */
+            --text-light: #F5F5F5;
+            --text-dark: #333333;
+            --header-height: 70px; 
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding-top: var(--header-height); 
+            font-family: 'Lato', 'Helvetica', Arial, sans-serif;
+            background-color: var(--text-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Arvo', 'Georgia', serif;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-top: 0;
+        }
+
+        section {
+            padding: 3rem 1.5rem; 
+            border-bottom: 1px solid #eee;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-red);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #B02020; 
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-yellow);
+            color: var(--dark-bg);
+            font-weight: bold;
+        }
+
+        .btn-secondary:hover {
+            background-color: #E0A02D;
+        }
+        
+        .text-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+        HEADER & NAVIGATION
+        ============================================================
+        */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--dark-bg); /* New Blue */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem 0 1.5rem; /* Adjusted padding */
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-sizing: border-box; 
+        }
+
+        .logo img {
+            height: 55px; /* Fits nicely in the 70px header */
+            width: auto;
+            border-radius: 50%;
+            vertical-align: middle; /* Aligns it nicely */
+        }
+
+        .menu-toggle {
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+            padding: 1rem; /* Easier to tap */
+        }
+
+        .main-nav {
+            display: none; 
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            height: calc(100vh - var(--header-height));
+            background-color: var(--dark-bg); /* New Blue */
+        }
+
+        .main-nav.is-open {
+            display: block;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            padding: 2rem 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .main-nav li {
+            border-bottom: 1px solid #3A4C7A; /* Lighter blue for separator */
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 1.5rem 1rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.2s ease;
+        }
+
+        .main-nav a:hover {
+            background-color: var(--primary-red);
+        }
+
+        .main-nav .nav-button {
+            padding: 1.5rem;
+        }
+
+        .main-nav .nav-button a {
+            background-color: var(--primary-yellow);
+            color: var(--dark-bg);
+            border-radius: 5px;
+            margin: 1rem 2rem 0;
+            padding: 1rem;
+        }
+        .main-nav .nav-button a:hover {
+            background-color: #E0A02D;
+        }
+
+        /* ============================================================
+        PAGE-SPECIFIC STYLES (NEW LAYOUT)
+        ============================================================
+        */
+
+        /* Hero Section */
+        #hero-image {
+            padding: 0; /* Remove padding */
+            line-height: 0; /* Remove any extra space */
+            border-bottom: 5px solid var(--primary-red);
+        }
+        
+        #hero-image img {
+            width: 100%;
+            height: 50vh; /* 50% of the viewport height */
+            object-fit: cover; /* This crops the image nicely */
+            border-radius: 0;
+        }
+
+        #intro {
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        
+        #intro h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        #intro p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* About Section */
+        #about h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Promise Section */
+        #promise {
+            background-color: #f9f9f9;
+        }
+        #promise h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .promise-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .promise-list li {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .promise-list li::before {
+            content: '🔥'; /* Fire emoji! */
+            position: absolute;
+            left: 0;
+            top: -2px;
+            font-size: 1.5rem;
+        }
+        .promise-list li strong {
+            color: var(--primary-red);
+            font-size: 1.1rem;
+            display: block;
+        }
+        
+        /* ============================================================
+        FOOTER
+        ============================================================
+        */
+        .footer {
+            background-color: var(--dark-bg); /* New Blue */
+            color: #aaa;
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border-top: 5px solid var(--primary-yellow); /* New Yellow */
+        }
+        .footer h3 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        .footer a {
+            color: var(--primary-yellow); /* New Yellow */
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer .copyright {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+
+        /* ============================================================
+        DESKTOP STYLES
+        ============================================================
+        */
+        @media (min-width: 768px) {
+            
+            section {
+                padding: 4rem 3rem;
+            }
+
+            .menu-toggle {
+                display: none; /* Hide hamburger */
+            }
+
+            .main-nav {
+                display: flex; /* Show nav */
+                position: static;
+                height: auto;
+                width: auto;
+                background-color: transparent;
+            }
+
+            .main-nav ul {
+                display: flex;
+                padding: 0;
+                align-items: center;
+            }
+            
+            .main-nav li {
+                border-bottom: none;
+            }
+
+            .main-nav a {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+
+            .main-nav a:hover {
+                background-color: transparent;
+                color: var(--primary-yellow);
+            }
+
+            .main-nav .nav-button {
+                padding: 0 0 0 1rem;
+            }
+            .main-nav .nav-button a {
+                margin: 0;
+                padding: 0.5rem 1rem;
+            }
+
+            #hero-image img {
+                height: 60vh; /* A bit taller on desktop */
+            }
+
+            #intro {
+                padding: 6rem 2rem;
+            }
+            #intro h1 {
+                font-size: 3rem;
+            }
+            #intro p {
+                font-size: 1.25rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="Candela Cuban Cuisine Logo">
+        </a>
+        
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+        
+        <nav class="main-nav" id="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="index.html#about">Our Story</a></li>
+                <li class="nav-button"><a href="contact.html" class="btn-secondary">Book Now / Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="hero-image">
+            <img src="truck.png" alt="Candela Cuban Cuisine Food Truck">
+        </section>
+
+        <section id="intro">
+            <h1>Bringing Authentic Cuban Flavors to the Treasure Coast</h1>
+            <p>
+                At Candela Cuban Cuisine, we're passionate about sharing the rich, vibrant tastes of Cuba
+                right here on the Treasure Coast. Your Cuban escape awaits!
+            </p>
+        </section>
+
+        <section id="about">
+            <div class="text-container">
+                <h2>¡Bienvenidos! From Our Family Kitchen to Yours</h2>
+                <p>
+                    "Candela is more than just a food truck. It is the story of our family, a story that began in Cuba over 60 years ago.
+                </p>
+                <p>
+                    We are Jose and Alina, and we are so proud to welcome you. We were both born and raised on the island, surrounded by the incredible smells
+                    and flavors of authentic Cuban cooking. We learned from our mothers and grandmothers—
+                    how to slow-roast pork until it falls apart, how to simmer black beans for hours until they are rich
+                    and perfect, and how to get that crispy, golden crust on a croqueta.
+                </p>
+                <p>
+                    These aren't just 'recipes' to us. They are our heritage.
+                </p>
+            </div>
+        </section>
+        
+        <section id="promise">
+            <div class="text-container">
+                <h2>The 'Candela' Promise: No Shortcuts.</h2>
+                <p>
+                    'Candela' means 'fire' or 'flame.' It's the passion you'll taste in every bite. We don't use fillers, and
+                    we don't cut corners. When we came to the U.S., we brought these traditions with us.
+                </p>
+                
+                <ul class="promise-list">
+                    <li>
+                        <strong>Lechón Asado</strong>
+                        Our secret mojo is marinated for 24 hours in our Lechón Asado and then slow-roasted for hours.
+                    </li>
+                    <li>
+                        <strong>Ropa Vieja</strong>
+                        (Shredded beef) is hand-pulled and stewed all day in a fragrant sauce, just like abuela made it.
+                    </li>
+                    <li>
+                        <strong>Our Cubano</strong>
+                        Our Cubano is pressed fresh to order, exactly the way it's done in Havana.
+                    </li>
+                </ul>
+                <p>
+                    We are so honored to cook for you. Thank you for being part of our journey.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <h3>Contact</h3>
+        <a href="mailto:candelacubancuisine@gmail.com">candelacubancuisine@gmail.com</a>
+        <a href="tel:772-342-3740">772-342-3740</a>
+        
+        <p class="copyright">&copy; 2025 Candela Cuban Cuisine. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+            
+            menuToggle.addEventListener('click', function() {
+      
+          const isOpen = mainNav.classList.contains('is-open');
+                
+                if (isOpen) {
+                    mainNav.classList.remove('is-open');
+                    menuToggle.innerHTML = '&#9776;'; // Hamburger icon
+                } else {
+                    mainNav.classList.add('is-open');
+                    menuToggle.innerHTML = '&times;'; // 'X' icon
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
